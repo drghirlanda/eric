@@ -1,0 +1,19 @@
+digraph network {
+rankdir=LR
+node [fixedsize=true height=1 shape=circle]
+edge [fontsize=10]
+n0 [label="eyeR\n768"]
+n1 [label="eyeG\n768"]
+n2 [label="eyeB\n768"]
+n3 [label="value\n1"]
+n4 [label="brain\n49"]
+n5 [label="speed\n1"]
+n6 [label="direction\n1"]
+n4 -> n4 [label="229"]
+n0 -> n4 [label="3719"]
+n1 -> n4 [label="3764"]
+n2 -> n4 [label="3849"]
+n3 -> n4 [label="49"]
+n4 -> n5 [label="49"]
+n4 -> n6 [label="49"]
+}

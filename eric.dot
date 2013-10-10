@@ -1,0 +1,48 @@
+digraph network {
+rankdir=LR
+node [fixedsize=true height=1 shape=circle]
+edge [fontsize=10]
+
+subgraph cluster_sensors {
+color=none
+
+subgraph cluster_eye {
+color=black
+
+n0 [label="eyeR\n768"]
+n1 [label="eyeG\n768"]
+n2 [label="eyeB\n768"]
+
+}
+
+subgraph cluster_bumpers {
+color=black
+
+n7 [label="bumperFL\n1"]
+n8 [label="bumperFR\n1"]
+n9 [label="bumperR\n1"]
+n10 [label="bumperL\n1"]
+n11 [label="bumperB\n1"]
+}
+
+}
+
+n3 [label="value\n1"]
+n4 [label="brain\n49"]
+n5 [label="speed\n1"]
+n6 [label="direction\n1"]
+n0 -> n4 [label="3757"]
+n1 -> n4 [label="3779"]
+n2 -> n4 [label="3838"]
+n0 -> n3 [label="768"]
+n3 -> n4 [label="49"]
+n4 -> n5 [label="49"]
+n4 -> n6 [label="49"]
+n7 -> n5 [label="1"]
+n7 -> n6 [label="1"]
+n8 -> n5 [label="1"]
+n8 -> n6 [label="1"]
+n9 -> n6 [label="1"]
+n10 -> n6 [label="1"]
+n11 -> n5 [label="1"]
+}
