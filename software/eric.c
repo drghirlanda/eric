@@ -1,24 +1,16 @@
-#include "mint.h"
+#include <mint.h>
 #include <stdio.h>
-#include <signal.h>
+#include <time.h>
 
 struct mint_network *net;
 
-void handler( int signum ) {
-  FILE *file;
-
-  file = fopen( "eric.out", "w" );
-  mint_network_save( net, file );
-  fclose( file );
-  mint_network_del( net );
-}
 
 int main( void ) {
   FILE *file;
-  int i;
+  int i, c;
   mint_nodes value;
 
-  signal( SIGINT, handler );
+  mint_random_seed( time(0) );
 
   mint_image_init();
   mint_camera_init();
@@ -37,8 +29,6 @@ int main( void ) {
 
   for( ;; ) {
     mint_network_operate( net );
-    fprintf( stdout, "%f\n", value[1][0] );
-    fflush( stdout );
   }
 
   file = fopen( "eric.out", "w" );

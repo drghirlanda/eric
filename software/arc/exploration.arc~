@@ -1,0 +1,13 @@
+nodes exploration
+  size 2
+  noise 1 1 0
+  integrator 10 0.2 0 2
+  sigmoid 0.1 1 2 1
+
+weights exploration-exploration
+
+0    -1.5
+-1.5 0
+
+weights exploration-direction
+-1 1

@@ -1,0 +1,43 @@
+network
+  camera
+  clocked 5
+#  threads 8 1 1
+  display
+
+# artificial retina:
+nodes eye
+  size 768
+  states 1
+  rows 24
+  red .3 green .3 blue .3
+
+# value system:
+nodes value 
+  size 1 
+  red 1 1
+
+# brain:
+nodes brain 
+  size 900 
+  states 1 
+  rows 30
+  noise 0 .5 0 
+  integrator 5 0.1 0 2
+  sigmoid 0.02 1 2 1
+
+weights brain-brain
+  normal .1 0.2 0.25
+
+# connections from eye to brain:
+weights eye-brain 
+  sparse
+  normal 1 0.01 0.1
+#  delta 0.1
+
+# value-brain
+weights value-brain 
+  target 2 # used by delta rule
+  normalize 1
+
+
+
