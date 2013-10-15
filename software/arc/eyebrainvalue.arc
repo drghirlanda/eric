@@ -13,7 +13,11 @@ nodes eye
 
 # value system:
 nodes value 
-  size 1 
+  size 1
+  key 49 1 0.99 0
+  key 50 1 0.01 0
+#  noise 0 0.01 1
+#  bounded 0 1
 
 # brain:
 nodes brain 
@@ -31,6 +35,3 @@ weights brain-brain
 weights eye-brain 
   sparse
   normal .1 0.15 0.05
-
-
-

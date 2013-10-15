@@ -10,19 +10,24 @@ nodes speed
 #  dcmotor 25 23 24
 
 weights brain-speed 
-  uniform 0.01 0.01 0.1
-  delta 0.01 3
+  uniform 0.01 0.1 0.1
+  delta 1e-5 3
 
 weights value-speed
   target 3
   normalize 1
 
-#nodes direction 
-#  size 1 
-#  states 1 
-#  sigmoid 0.5 1 
+nodes direction 
+  size 1 
+  states 1 
+  sigmoid 0.5 1 
 #  servomotor 17 1200 1800 0 27 22
 
-#weights brain-direction 
-#  uniform 0.2 0.2 
-#  delta 0.1
+weights brain-direction 
+  uniform 0.01 0.1 0.1 
+  delta 1e-5 2
+
+weights value-direction
+  target 2
+  normalize 1
+

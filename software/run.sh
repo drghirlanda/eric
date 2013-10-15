@@ -11,7 +11,7 @@ ls -lh eric
 cat arc/eyebrainvalue.arc > eric.arc
 cat arc/effectors.arc >> eric.arc
 #cat arc/reflex.arc >> eric.arc
-#cat arc/exploration.arc >> eric.arc
+cat arc/exploration.arc >> eric.arc
 
 set +e
 ./eric

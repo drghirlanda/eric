@@ -13,7 +13,11 @@ nodes eye
 
 # value system:
 nodes value 
-  size 1 
+  size 1
+  key 49 1 0.99 0
+  key 50 1 0.01 0
+#  noise 0 0.01 1
+#  bounded 0 1
 
 # brain:
 nodes brain 
@@ -31,9 +35,6 @@ weights brain-brain
 weights eye-brain 
   sparse
   normal .1 0.15 0.05
-
-
-
 # effector system for eric: one dcmotor to control forward/backward
 #  movement and one servomotor to steer, both connected to the brain
 #  by plastic connections
@@ -46,19 +47,55 @@ nodes speed
 #  dcmotor 25 23 24
 
 weights brain-speed 
-  uniform 0.01 0.01 0.1
-  delta 0.01 3
+  uniform 0.01 0.1 0.1
+  delta 1e-5 3
 
 weights value-speed
   target 3
   normalize 1
 
-#nodes direction 
-#  size 1 
-#  states 1 
-#  sigmoid 0.5 1 
+nodes direction 
+  size 1 
+  states 1 
+  sigmoid 0.5 1 
 #  servomotor 17 1200 1800 0 27 22
 
-#weights brain-direction 
-#  uniform 0.2 0.2 
-#  delta 0.1
+weights brain-direction 
+  uniform 0.01 0.1 0.1 
+  delta 1e-5 2
+
+weights value-direction
+  target 2
+  normalize 1
+
+nodes explore
+  size 3
+  states 1
+  noise 0.1 .2 0
+  habituation 50 1 2 0
+  integrator 15 0.05 0 1
+  bounded
+
+weights brain-explore
+  normal 0 0.01 0.05
+  delta 1e-5 2
+
+weights value-explore
+  target 2
+  normalize 1
+
+weights explore-explore
+0 -1.5 -1.5
+-1.5 0 -1.5
+-1.5 -1.5 0
+
+weights explore-direction
+-10 
+10
+0
+
+weights explore-speed
+1
+1
+1
+
