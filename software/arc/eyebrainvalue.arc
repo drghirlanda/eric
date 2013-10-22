@@ -3,6 +3,7 @@ network
   clocked 100
   threads 8 1 1
   display
+  events
 
 # artificial retina:
 nodes eye

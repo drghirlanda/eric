@@ -147,7 +147,7 @@ device=Raspberry Pi
 }
 C 54600 44500 1 90 0 ground.sym
 T 49800 41100 9 10 1 0 0 0 1
-Robot circuit
+ERIC Hardware Configuration
 T 50000 40100 9 10 1 0 0 0 1
 1
 T 51500 40100 9 10 1 0 0 0 1
@@ -157,7 +157,7 @@ Stefano Ghirlanda
 T 46300 42600 9 10 1 0 0 0 1
 2013-10-09
 T 53800 40400 9 10 1 0 0 0 1
-1, 2013-10-09
+2013-10-15
 N 43800 49600 43800 48100 4
 C 49300 48700 1 0 0 lm393-2.sym
 C 50000 47400 1 0 0 resistor-1.sym

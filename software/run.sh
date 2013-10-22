@@ -13,8 +13,18 @@ cat arc/effectors.arc >> eric.arc
 #cat arc/reflex.arc >> eric.arc
 cat arc/exploration.arc >> eric.arc
 
-set +e
+set +e # non-fatal errors to kill camshot
+
+# while eric runs, we read 1 char at a time without waiting for
+# \n. this is handy to send keypress events to eric
+stty -icanon min 1
+
 ./eric
 
-# cleanup in case of error
-killall camshot
+# if eric crashes, we need to kill camshot manually
+if [ $? -ne 0 ]; then
+    killall camshot
+fi
+    
+stty cooked # reset
+

@@ -9,6 +9,7 @@ int main( void ) {
   FILE *file;
   int i, c;
   mint_nodes value;
+  float old_value;
 
   mint_random_seed( time(0) );
 
@@ -27,8 +28,14 @@ int main( void ) {
   mint_check( i >= 0, "cannot find nodes 'value'");
   value = mint_network_nodes( net, i );
 
+  old_value = -1;
+
   for( ;; ) {
     mint_network_operate( net );
+    if( value[1][0] != old_value ) {
+      printf( "%f\n", value[1][0] );
+      old_value = value[1][0];
+    }
   }
 
   file = fopen( "eric.out", "w" );
