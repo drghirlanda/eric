@@ -6,13 +6,13 @@ nodes explore
   integrator 15 0.05 0 1
   bounded
 
-weights brain-explore
-  normal 0 0.01 0.05
-  delta 1e-5 2
+#weights brain-explore
+#  normal 0 0.01 0.05
+#  delta 1e-5 2
 
-weights value-explore
-  target 2
-  normalize 1
+#weights value-explore
+#  target 2
+#  normalize 1
 
 weights explore-explore
 0 -1.5 -1.5
@@ -25,7 +25,7 @@ weights explore-direction
 0
 
 weights explore-speed
-1
-1
+0
+0
 1
 
