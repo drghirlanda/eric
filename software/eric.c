@@ -1,15 +1,36 @@
 #include <mint.h>
 #include <stdio.h>
 #include <time.h>
+#include <signal.h>
 
 struct mint_network *net;
 
+/* this handler saves the network when SIGUSR1 is received */
+
+void handler( int signum ) {
+  FILE *file;
+
+  fprintf( stderr, "caught signal %d:\n", signum );
+  fprintf( stderr, "saving eric to 'eric-trained.arc'\n" );
+
+  file = fopen( "eric-trained.arc", "w" );
+  mint_network_save( net, file );
+  fclose( file );
+
+  mint_network_del( net );
+
+  fprintf( stderr, "exiting eric\n" );
+
+  exit( EXIT_SUCCESS );
+}
 
 int main( void ) {
   FILE *file;
   int i, c;
   mint_nodes value;
   float old_value;
+
+  signal( SIGUSR1, handler );
 
   mint_random_seed( time(0) );
 
@@ -38,10 +59,9 @@ int main( void ) {
     }
   }
 
-  file = fopen( "eric.out", "w" );
+  file = fopen( "eric-trained.arc", "w" );
   mint_network_save( net, file );
   fclose( file );
-
 
   mint_network_del( net );
 
