@@ -1,0 +1,4 @@
+#!/bin/sh
+set -ex
+cc -o calibration calibration.c -lrt -lpgpio
+sudo ./calibration

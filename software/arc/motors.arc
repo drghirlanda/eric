@@ -21,7 +21,7 @@ nodes direction
   size 1 
   states 1 
   sigmoid 0.5 1 
-#  servomotor 17 1200 1800 0 27 22
+#  servomotor 17 1240 2500 0 27 22
 
 weights brain-direction 
   uniform -0.1 0.1 0.1 

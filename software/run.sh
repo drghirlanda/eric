@@ -11,8 +11,8 @@ elog "STARTING eric"
 # build eric (switch between debug and optimized code below)
 SDL=$(sdl-config --libs) # includes pthread
 SDL="$SDL -lSDL_image -lSDL_gfx -lSDL_ttf"
-#cc -g -O0 -o eric eric.c -lm -lmint-debug $SDL
-cc -O2 -o eric eric.c -lm -lmint $SDL
+cc -g -O0 -o eric eric.c -lm -lmint-debug $SDL
+#cc -O2 -o eric eric.c -lm -lmint $SDL
 ls -lh eric
 
 # build architecture file (you can comment out some sections)

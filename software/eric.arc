@@ -1,8 +1,8 @@
 network
   camera
-  clocked 50
-  threads 4 1 1
-  display
+  clocked 24 1
+#  threads 4 1 1
+#  display
   events
 
 # brain:
