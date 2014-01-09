@@ -4,6 +4,14 @@
 ## voltage monitor. if the pin reads high (1), we send SIGUSR1 to eric
 ## (we got eric's pid as first argument) 
 
+## check for gpio utility:
+gpio >/dev/null 2>&1
+if [ $? -ne 0 ]; then
+    echo "voltmon.sh: gpio utility not found"
+    echo "voltmon.sh: voltage monitoring disabled"
+    exit
+fi
+
 INTERVAL=60             # check every so many seconds
 ERIC_PID=$1             # used to signal eric to exit
 set -e                  # fatal errors 
@@ -23,5 +31,5 @@ while true; do
 	echo "$(date): poweroff"
 	sudo poweroff
     fi
-    sleep $INTERVAL # check once per minute
+    sleep $INTERVAL # check every so often
 done

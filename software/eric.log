@@ -21,7 +21,7 @@ Letting the camera automaticaly adjust the picture:..........mint_camera_close: 
 mint_camera_close: stopping camshot (pid=14426)
 0.000000
 + kill 14425
-./run.sh: line 33: kill: (14425) - No such process
-+ '[' 1 -ne 0 ']'
+./run.sh: licat: /tmp/mint-camera-3649: No such file or directory
+]'
 + killall camshot
 + stty cooked
