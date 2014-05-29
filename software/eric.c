@@ -59,11 +59,5 @@ int main( void ) {
     }
   }
 
-  file = fopen( "eric-trained.arc", "w" );
-  mint_network_save( net, file );
-  fclose( file );
-
-  mint_network_del( net );
-
   return 0;
 }

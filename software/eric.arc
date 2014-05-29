@@ -1,7 +1,12 @@
 network
   camera
+<<<<<<< HEAD
 #  clocked 10 1
   threads 4 1 1
+=======
+  clocked 24 1
+#  threads 4 1 1
+>>>>>>> c79506620a102e1ca4dd3822e59c634d83b23a10
   display
   events
 
