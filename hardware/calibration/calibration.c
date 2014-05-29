@@ -56,6 +56,13 @@ int main( void ) {
     exit( EXIT_FAILURE );
   }
 
+  printf( "Keys:\n" );
+  printf( "a: counterclockwise\n" );
+  printf( "s: clockwise\n" );
+  printf( "m: save minimum position\n" );
+  printf( "M: save maximum position\n" );
+  printf( "q: print saved values and quit\n" );
+
   do {
     c = getc( stdin );
     switch( c ) {
@@ -78,6 +85,6 @@ int main( void ) {
 
   } while( 1 );
 
-  return 0;
+  return EXIT_SUCCESS;
 }
 

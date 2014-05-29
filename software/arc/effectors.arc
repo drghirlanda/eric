@@ -1,6 +1,6 @@
 # effector system for eric: one dcmotor to control forward/backward
-#  movement and one servomotor to steer, both connected to the brain
-#  by plastic connections
+# movement and one servomotor to steer, both connected to the brain
+# by plastic connections
 
 nodes speed 
   size 1 

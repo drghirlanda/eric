@@ -19,7 +19,7 @@ ls -lh eric
 cat arc/brain.arc > eric.arc
 cat arc/eye.arc >> eric.arc
 cat arc/motors.arc >> eric.arc
-cat arc/reflexes.arc >> eric.arc
+#cat arc/reflexes.arc >> eric.arc
 cat arc/exploration.arc >> eric.arc
 
 set +e # from now on, set errors to non-fatal
@@ -30,7 +30,7 @@ stty -icanon min 1
 
 sudo ./eric &            # start eric (gpio read/write needs sudo) 
 ERIC_PID=$!              # save eric's PID
-./voltmon.sh $ERIC_PID & #  voltage monitor, see voltmon.sh 
+#./voltmon.sh $ERIC_PID & #  voltage monitor, see voltmon.sh 
 VOLTMON_PID=$!           # save voltmon's PID
 wait $ERIC_PID           # wait for eric (or until batteries run out)
 ERIC_STATUS=$?           # did eric terminate successfully?
