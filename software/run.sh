@@ -11,8 +11,11 @@ elog "STARTING eric"
 # build eric (switch between debug and optimized code below)
 SDL=$(sdl-config --libs) # includes pthread
 SDL="$SDL -lSDL_image -lSDL_gfx -lSDL_ttf"
-#cc -g -O0 -o eric eric.c -lm -lmint-debug $SDL
-cc -O2 -o eric eric.c -lm -lmint $SDL
+if [ $debug -eq 1 ]; then
+    cc -g -O0 -o eric eric.c -lm -lmint-debug $SDL
+else
+    cc -O2 -o eric eric.c -lm -lmint $SDL
+fi
 ls -lh eric
 
 # build architecture file (you can comment out some sections)
@@ -38,7 +41,7 @@ kill $VOLTMON_PID        # cancel voltmon.sh if eric exits on its own
 
 stty cooked # restore normal terminal mode
 
-# if eric did not terminate successfully we kill camshot manually
+# if eric did not terminate successfully we kill camshot manually,
 # otherwise we cannot start eric again
 if [ $ERIC_STATUS -ne 0 ]; then
     elog "eric TERMINATED abnormally"
