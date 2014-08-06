@@ -7,7 +7,7 @@ nodes bumperFL
   states 1
 #  gpiosensor 2 1 0 # node input +1 when pin 2 becomes active
   integrator 1 .1 0 2 # fast reaction, slowish decay
-  sigmoid .001 10 2 1 # low 0 value, high gain
+  logistic .001 10 2 1 # low 0 value, high gain
 
 weights bumperFL-speed
 -10
@@ -21,7 +21,7 @@ nodes bumperFR
   states 1
 #  gpiosensor 3 1 0
   integrator 1 .1 0 2
-  sigmoid .001 10 2 1
+  logistic .001 10 2 1
 
 weights bumperFR-speed
 -10
@@ -35,7 +35,7 @@ nodes bumperR
   states 1
 #  gpiosensor 11 1 0
   integrator 1 .1 0 2
-  sigmoid .001 10 2 1
+  logistic .001 10 2 1
 
 weights bumperR-direction
 -10
@@ -46,7 +46,7 @@ nodes bumperL
   states 1
 #  gpiosensor 11 1 0
   integrator 1 .1 0 2
-  sigmoid .001 10 2 1
+  logistic .001 10 2 1
 
 weights bumperL-direction
 10
@@ -58,8 +58,7 @@ nodes bumperB
   states 1
 # gpiosensor 11 1 0
   integrator 1 .1 0 2
-  sigmoid 0.001 10 2 1
+  logistic 0.001 10 2 1
 
 weights bumperB-speed
 10
-  

@@ -1,26 +1,18 @@
 digraph network {
 rankdir=LR
-node [fixedsize=true height=1 shape=circle]
-edge [fontsize=10]
+node [fixedsize=true height=1 shape=circle fontname=Helvetica]
+edge [fontsize=10 fontname=Helvetica]
 n0 [label="brain\n400"]
 n1 [label="value\n1"]
 n2 [label="eye\n768"]
 n3 [label="speed\n1"]
 n4 [label="direction\n1"]
 n5 [label="explore\n3"]
-<<<<<<< HEAD
-n0 -> n0 [label="23946"]
-n2 -> n0 [label="15266"]
-n0 -> n3 [label="43"]
+n0 -> n0 [label="24118"]
+n2 -> n0 [label="15372"]
+n0 -> n3 [label="40"]
 n1 -> n3 [label="1"]
-n0 -> n4 [label="36"]
-=======
-n0 -> n0 [label="23944"]
-n2 -> n0 [label="15447"]
-n0 -> n3 [label="43"]
-n1 -> n3 [label="1"]
-n0 -> n4 [label="48"]
->>>>>>> c79506620a102e1ca4dd3822e59c634d83b23a10
+n0 -> n4 [label="32"]
 n1 -> n4 [label="1"]
 n5 -> n5 [label="6"]
 n5 -> n4 [label="2"]

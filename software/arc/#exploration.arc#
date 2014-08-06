@@ -4,7 +4,7 @@ nodes explore
   noise 0.1 .2 0
   habituation 50 1 2 0
   integrator 15 0.05 0 1
-  logistic 0.001 1
+  bounded
 
 #weights brain-explore
 #  normal 0 0.01 0.05

@@ -1,12 +1,7 @@
 network
   camera
-<<<<<<< HEAD
-#  clocked 10 1
+  clocked 10 1
   threads 4 1 1
-=======
-  clocked 24 1
-#  threads 4 1 1
->>>>>>> c79506620a102e1ca4dd3822e59c634d83b23a10
   display
   events
 
@@ -16,8 +11,8 @@ nodes brain
   states 1 
   rows 20
   noise 0 .01 0 
-  integrator 2.5 0.2 0 2
-  sigmoid 0.05 1 2 1
+  integrator 1 0.15 0 2
+  logistic 0.05 1 2 1
 
 weights brain-brain
   sparse
@@ -28,5 +23,4 @@ nodes value
   size 1
   key 49 1 0.99 0
   key 50 1 0.01 0
-#  noise 0 0.01 1
-#  bounded 0 1
+
