@@ -1,0 +1,23 @@
+,quantity,unit price,subtotal,unit weight (g),Weight (g),link,Addl. Links,Notes
+raspberry pi,2,35,70,45,45,,,Power draw max: 500mA
+steering servo,2,12,24,39,39,,,
+SN75441 (H bridge),5,2,10,20,50,https://www.sparkfun.com/products/315,,
+lego XL motor,2,16,32,68.1,68.1,http://shop.lego.com/en-US/LEGO-Power-Functions-XL-Motor-8882,,"maximum torque of 90,4 mNm, max power draw 650mA"
+legos,1,100,100,,0,,,
+micro sd adapter,2,6,12,3,3,http://www.adafruit.com/products/102,,
+micro sd,3,8,24,,0,,,
+usb stick,2,8,16,18,18,"https://www.google.com/shopping/product/11108304798484871199?q=kingston+data+traveler&safe=off&bav=on.2,or.r_cp.r_qf.&bvm=bv.49478099,d.dmg,pv.xjs.s.en_US.c75bKy5EQ0A.O&biw=1092&bih=510&tch=1&ech=1&psi=biroUbntFrbK4APHjIHIDg.1374169963690.5&sa=X&ei=firoUd_HOpP-4APYtoCQAw&ved=0CLsBEPMCMAM",http://www.bestbuy.com/site/Kingston-Technology---DataTraveler-Micro-8GB-USB-Flash-Drive---Black/5909325.p?id=1218705874830&skuId=5909325#tab=specifications,
+wifi module,2,12,24,2.17,2.17,,,
+voltage regulator,10,0.8,8,,0,,,
+eneloop aa,24,2.5,60,23,276,,,
+power strip,1,15,15,,0,,,
+battery holder,4,5,20,42,84,http://www.adafruit.com/products/248#Technical Details,,
+battery charger,1,40,40,,0,,,
+pi power,2,6,12,,0,,,
+breadboard,2,5,10,36,36,http://www.adafruit.com/products/64,,
+pi cobbler kit,2,8,16,,0,,,
+jumpers,2,6,12,,0,,,
+camera,2,5,10,25,25,,,"Unavailable for 10 weeks, weight estimated"
+electronics kit,1,100,100,,0,,,
+9V battery,0,,,47,0,,,
+TOTAL,,,615,,646.27,,,
