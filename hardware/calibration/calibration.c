@@ -4,9 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int enable_pin = 27;
-int output_pin = 22;
-int control_pin = 17;
+#include "calibration.h"
 
 int main( void ) {
   int i, c;

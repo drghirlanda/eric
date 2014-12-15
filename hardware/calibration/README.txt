@@ -1,9 +1,12 @@
-This calbiration utility enables one to center the ERIC servomotor 
-precisely. The pins are hardcoded - make sure they match those in 
+calibration.c 
+
+This calbiration utility enables one to center the ERIC servomotor
+precisely. It is run through the run.sh shell script. 
+
+Pin numbers are set in run.sh - make sure they match those in
 eric/software/arc/effectors.arc.
 
-The values giving the correct calibration (minimum and maximum 
-positions) should be set in the same file (servomotor lines).
+Once you have determined the values giving the correct calibration,
+write them in the servomotor section of effectors.arc.
 
-It is run throuhg the run.sh shell script.
 
