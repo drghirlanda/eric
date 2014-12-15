@@ -1,0 +1,10 @@
+#!/bin/bash -e
+BOOT=/tmp/raspbian.boot
+ROOT=/tmp/raspbian.root
+mkdir -p ${BOOT}
+mount -v -o offset=4194304 -t vfat ${1} ${BOOT}
+echo "mounted boot partition on ${BOOT}"
+mkdir -p ${ROOT}
+mount -v -o offset=62914560 -t ext4 ${1} ${ROOT}
+echo "mounted root partition on ${ROOT}"
+
