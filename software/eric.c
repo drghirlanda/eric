@@ -45,9 +45,7 @@ int main( void ) {
   mint_network_graph( net, file );
   fclose( file );
 
-  i = mint_network_nodes_find( net, "value" );
-  mint_check( i >= 0, "cannot find nodes 'value'");
-  value = mint_network_nodes( net, i );
+  value = mint_network_find_nodes( net, "value" );
 
   old_value = -1;
 

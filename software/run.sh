@@ -9,12 +9,12 @@ set -ex # fatal errors
 elog "STARTING eric"
 
 # build eric (switch between debug and optimized code below)
-SDL=$(sdl-config --libs) # includes pthread
+SDL=$(sdl-config --libs)
 SDL="$SDL -lSDL_image -lSDL_gfx -lSDL_ttf"
 if [ $debug -eq 1 ]; then
-    cc -g -O0 -o eric eric.c -lm -lmint-debug $SDL
+    cc -g -O0 -o eric eric.c -lm -pthread -lrt -lmint-debug $SDL
 else
-    cc -O2 -o eric eric.c -lm -lmint $SDL
+    cc -O2 -o eric eric.c -lm -pthread -lrt -lmint $SDL
 fi
 ls -lh eric
 
