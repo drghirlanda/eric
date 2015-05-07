@@ -1,15 +1,15 @@
 #!/bin/bash
 ## script to control eric with the keyboard
 
-DC_ENABLE=16
+DC_ENABLE=19
 DC_FORWARD=23
-DC_BACK=19
+DC_BACK=16
 SERVO=21
 
 CENTER=1500
 
-PIGS=echo
-#PIGS="sudo pigs"
+#PIGS=echo
+PIGS="sudo pigs"
 
 stty -echo;
 
@@ -25,13 +25,38 @@ EOF
 }
 
 function set_speed {
-    if [ $1 > 0 ]; then
-	$PIGS pwm $DC_FORWARD $1
+    SPEED=$1
+    if [ $SPEED -gt 0 ]; then
+	if [ $SPEED -gt 255 ]; then
+	    SPEED=255
+	fi
+	$PIGS pwm $DC_FORWARD $SPEED
 	$PIGS pwm $DC_BACK 0
     else
-	$PIGS pwm $DC_BACK $[ -$SPEED ]
-	$PIGS pwn $DC_FORWARD 0
+	if [ $SPEED -le -255 ]; then
+	    SPEED=-255
+	fi
+	$PIGS pwm $DC_BACK $[ -($SPEED) ]
+	$PIGS pwm $DC_FORWARD 0
     fi
+}
+
+function set_position {
+    POS=$1
+    if [ $POS -gt 2500 ]; then
+	POS=2500
+    elif [ $POS -le 500 ]; then
+	POS=500
+    fi
+    $PIGS servo $SERVO $POS
+}
+
+function reset_motors {
+    SPEED=0
+    POS=$CENTER
+    $PIGS pwm $DC_FORWARD 0
+    $PIGS pwm $DC_BACK 0
+    $PIGS servo $SERVO $CENTER
 }
 
 echo "press h for help"
@@ -54,26 +79,19 @@ while true; do
 	    exit
 	    ;;
 	"k")
-	    SPEED=$[ $SPEED + 32 ]
-	    set_speed $SPEED
+	    set_speed $[ $SPEED + 32 ]
 	    ;;
-	
 	"l")
-	    SPEED=$[ $SPEED - 32 ]
-	    set_speed $SPEED
+	    set_speed $[ $SPEED - 32 ]
 	    ;;
 	"r")
-	    $PIGS pwm $DC_FORWARD 0
-	    $PIGS pwm $DC_BACK 0
-	    $PIGS servo $SERVO $CENTER
+	    reset_motors
 	    ;;
 	"a")
-	    POS=$[ $POS - 50 ]
-	    $PIGS servo $SERVO $POS
+	    set_position $[ $POS - 50 ]
 	    ;;
 	"s")
-	    POS=$[ $POS + 50 ]
-	    $PIGS servo $SERVO $POS
+	    set_position $[ $POS + 50 ]
 	    ;;
 	"h")
 	    print_help
@@ -81,4 +99,5 @@ while true; do
 	*)
 	    echo "unknown command: $KEY (press h for help)"
     esac
+    echo "speed = $SPEED; position = $POS"
 done
