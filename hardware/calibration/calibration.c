@@ -21,30 +21,30 @@ int main( void ) {
     exit( EXIT_FAILURE );
   }
 
-  i = gpioSetMode( enable_pin, PI_OUTPUT );
-  if( i !=0 ) {
-    printf("cannot set enable pin mode to output" );
-    exit( EXIT_FAILURE );
-  }
+  /* i = gpioSetMode( enable_pin, PI_OUTPUT ); */
+  /* if( i !=0 ) { */
+  /*   printf("cannot set enable pin mode to output" ); */
+  /*   exit( EXIT_FAILURE ); */
+  /* } */
 
-  i = gpioSetMode( output_pin, PI_OUTPUT );
-  if( i !=0 ) {
-    printf("cannot set output pin mode to output" );
-    exit( EXIT_FAILURE );
-  }
+  /* i = gpioSetMode( output_pin, PI_OUTPUT ); */
+  /* if( i !=0 ) { */
+  /*   printf("cannot set output pin mode to output" ); */
+  /*   exit( EXIT_FAILURE ); */
+  /* } */
 
-  i = gpioWrite( enable_pin, 1 );
-  if( i != 0 ) {
-    printf("cannot set enable pin" ); 
-    exit( EXIT_FAILURE );
-  }
+  /* i = gpioWrite( enable_pin, 1 ); */
+  /* if( i != 0 ) { */
+  /*   printf("cannot set enable pin" );  */
+  /*   exit( EXIT_FAILURE ); */
+  /* } */
 
 
-  i = gpioWrite( output_pin, 1 );
-  if( i != 0 ) {
-    printf("cannot output enable pin" ); 
-    exit( EXIT_FAILURE );
-  }
+  /* i = gpioWrite( output_pin, 1 ); */
+  /* if( i != 0 ) { */
+  /*   printf("cannot output enable pin" );  */
+  /*   exit( EXIT_FAILURE ); */
+  /* } */
 
   position = 1500;
 
