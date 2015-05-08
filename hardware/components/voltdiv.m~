@@ -1,0 +1,3 @@
+VCrit = 6;         # voltage at which regulator fails 
+VI = 8.5;          # voltage with full battery
+VIT = VCrit + 0.5; # voltage at which to shut down
