@@ -5,22 +5,34 @@ DC_ENABLE=16
 DC_FORWARD=23
 DC_BACK=19
 SERVO=21
-
+SERVO_STEP=10
 CENTER=1500
 
-PIGS=echo
-#PIGS="sudo pigs"
+## just echo commands if pigs is not available
+if which pigs > /dev/null 2>&1; then
+    PIGS="sudo pigs"
+else
+    PIGS=echo
+fi
 
 stty -echo;
 
 function print_help() {
     cat<<EOF
-controls:
-a,s: left, right
-k,l: faster, slower
-q: exit
-r: reset (stop and center)
-h: help
+Eric's keyboard control utility:
+
+* Run eric as a remote-controlled car
+* Calibrate the servo motor
+* Controls:
+  a/s: turn left/right
+  k/l: go faster/slower
+  +/-: increase/decrease servo motor step
+  q:   exit
+  r:   reset (stop and position servo motor to 1500)
+  h:   this help
+
+Press k to get going!
+
 EOF
 }
 
@@ -34,17 +46,35 @@ function set_speed {
     fi
 }
 
-echo "press h for help"
+function adjust_servo_step {
+    SERVO_STEP=$[ $SERVO_STEP + $1 ]
+    if [ $SERVO_STEP -gt 100 ]; then
+	SERVO_STEP=100
+    elif [ $SERVO_STEP -le 1 ]; then
+	SERVO_STEP=1
+    fi
+}
 
-## initialize motors (DC off, servo at nominal center position)
+function print_info {
+    echo
+    echo "servo motor: pos=$POS, step=$SERVO_STEP"
+    echo "dc motor:    speed=$SPEED"
+}
+
+clear
+print_help
+
+if [ $PIGS == "echo" ]; then
+    echo "* No 'pigs' command, running in sham mode *"
+fi
+
+## initialize state and motors (dc=off, servo=nominal center)
+SPEED=0
+POS=$CENTER
 $PIGS write $DC_FORWARD 0
 $PIGS write $DC_BACK 0
 $PIGS write $DC_ENABLE 1
 $PIGS servo $SERVO $CENTER
-
-## current state
-SPEED=0
-POS=$CENTER
 
 while true; do
     read -n 1 KEY;
@@ -68,12 +98,18 @@ while true; do
 	    $PIGS servo $SERVO $CENTER
 	    ;;
 	"a")
-	    POS=$[ $POS - 50 ]
+	    POS=$[ $POS - $SERVO_STEP ]
 	    $PIGS servo $SERVO $POS
 	    ;;
 	"s")
-	    POS=$[ $POS + 50 ]
+	    POS=$[ $POS + $SERVO_STEP ]
 	    $PIGS servo $SERVO $POS
+	    ;;
+	"+")
+	    adjust_servo_step 1
+	    ;;
+	"-")
+	    adjust_servo_step -1
 	    ;;
 	"h")
 	    print_help
@@ -81,4 +117,5 @@ while true; do
 	*)
 	    echo "unknown command: $KEY (press h for help)"
     esac
+    print_info
 done
