@@ -1,0 +1,2 @@
+#!/bin/sh
+mount -v -o offset=4194304 -t vfat $@
