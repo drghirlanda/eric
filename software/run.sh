@@ -20,7 +20,7 @@ ls -lh eric
 
 # build architecture file (you can comment out some sections)
 cat arc/brain.arc > eric.arc
-cat arc/eye.arc >> eric.arc
+#cat arc/eye.arc >> eric.arc
 cat arc/motors.arc >> eric.arc
 #cat arc/reflexes.arc >> eric.arc
 cat arc/exploration.arc >> eric.arc

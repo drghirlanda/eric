@@ -1,9 +1,9 @@
 #!/bin/bash
 ## script to control eric with the keyboard
 
-DC_ENABLE=16
+DC_ENABLE=19
 DC_FORWARD=23
-DC_BACK=19
+DC_BACK=16
 SERVO=21
 SERVO_STEP=10
 CENTER=1500

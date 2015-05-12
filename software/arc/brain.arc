@@ -1,9 +1,9 @@
 network
-  camera
+#  camera
   clocked 10 1
   threads 4 1 1
-  display
-  events
+#  display
+#  events
 
 # brain:
 nodes brain 
@@ -21,6 +21,6 @@ weights brain-brain
 # value system:
 nodes value 
   size 1
-  key 49 1 0.99 0
-  key 50 1 0.01 0
+#  key 49 1 0.99 0
+#  key 50 1 0.01 0
 
