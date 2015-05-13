@@ -1,9 +1,9 @@
 #!/bin/bash
 ## script to control eric with the keyboard
 
-DC_ENABLE=19
 DC_FORWARD=23
-DC_BACK=16
+DC_BACK=24
+DC_ENABLE=25
 SERVO=21
 SERVO_STEP=10
 CENTER=1500
@@ -37,7 +37,7 @@ EOF
 }
 
 function set_speed {
-    if [ $1 > 0 ]; then
+    if [ $1 -gt 0 ]; then
 	$PIGS pwm $DC_FORWARD $1
 	$PIGS pwm $DC_BACK 0
     else
@@ -63,10 +63,6 @@ function print_info {
 
 clear
 print_help
-
-if [ $PIGS == "echo" ]; then
-    echo "* No 'pigs' command, running in sham mode *"
-fi
 
 ## initialize state and motors (dc=off, servo=nominal center)
 SPEED=0
