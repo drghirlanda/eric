@@ -6,6 +6,7 @@ DC_BACK=24
 DC_ENABLE=25
 SERVO=21
 SERVO_STEP=10
+DC_STEP=10
 CENTER=1500
 
 ## just echo commands if pigs is not available
@@ -87,11 +88,11 @@ while true; do
 	    exit
 	    ;;
 	"k")
-	    SPEED=$[ $SPEED + 32 ]
+	    SPEED=$[ $SPEED + $DC_STEP ]
 	    ;;
 	
 	"l")
-	    SPEED=$[ $SPEED - 32 ]
+	    SPEED=$[ $SPEED - $DC_STEP ]
 	    ;;
 	"r")
 	    SPEED=0
