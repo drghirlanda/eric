@@ -37,12 +37,17 @@ EOF
 }
 
 function set_speed {
-    if [ $1 -gt 0 ]; then
-	$PIGS pwm $DC_FORWARD $1
+    if [ $SPEED -gt 255 ]; then
+	SPEED=255
+    elif [ $SPEED -le -255 ]; then
+	SPEED="-255"
+    fi
+    if [ $SPEED -gt 0 ]; then
+	$PIGS pwm $DC_FORWARD $SPEED
 	$PIGS pwm $DC_BACK 0
     else
 	$PIGS pwm $DC_BACK $[ -$SPEED ]
-	$PIGS pwn $DC_FORWARD 0
+	$PIGS pwm $DC_FORWARD 0
     fi
 }
 
@@ -72,6 +77,8 @@ $PIGS write $DC_BACK 0
 $PIGS write $DC_ENABLE 1
 $PIGS servo $SERVO $CENTER
 
+set_speed
+
 while true; do
     read -n 1 KEY;
     case $KEY in
@@ -81,25 +88,20 @@ while true; do
 	    ;;
 	"k")
 	    SPEED=$[ $SPEED + 32 ]
-	    set_speed $SPEED
 	    ;;
 	
 	"l")
 	    SPEED=$[ $SPEED - 32 ]
-	    set_speed $SPEED
 	    ;;
 	"r")
-	    $PIGS pwm $DC_FORWARD 0
-	    $PIGS pwm $DC_BACK 0
-	    $PIGS servo $SERVO $CENTER
+	    SPEED=0
+	    POS=$CENTER
 	    ;;
 	"a")
 	    POS=$[ $POS - $SERVO_STEP ]
-	    $PIGS servo $SERVO $POS
 	    ;;
 	"s")
 	    POS=$[ $POS + $SERVO_STEP ]
-	    $PIGS servo $SERVO $POS
 	    ;;
 	"+")
 	    adjust_servo_step 1
@@ -113,5 +115,7 @@ while true; do
 	*)
 	    echo "unknown command: $KEY (press h for help)"
     esac
+    set_speed
+    $PIGS servo $SERVO $POS
     print_info
 done
