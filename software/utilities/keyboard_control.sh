@@ -1,11 +1,12 @@
 #!/bin/bash
 ## script to control eric with the keyboard
 
-DC_ENABLE=16
 DC_FORWARD=23
-DC_BACK=19
+DC_BACK=24
+DC_ENABLE=25
 SERVO=21
 SERVO_STEP=10
+DC_STEP=10
 CENTER=1500
 
 ## just echo commands if pigs is not available
@@ -37,12 +38,17 @@ EOF
 }
 
 function set_speed {
-    if [ $1 > 0 ]; then
-	$PIGS pwm $DC_FORWARD $1
+    if [ $SPEED -gt 255 ]; then
+	SPEED=255
+    elif [ $SPEED -le -255 ]; then
+	SPEED="-255"
+    fi
+    if [ $SPEED -gt 0 ]; then
+	$PIGS pwm $DC_FORWARD $SPEED
 	$PIGS pwm $DC_BACK 0
     else
 	$PIGS pwm $DC_BACK $[ -$SPEED ]
-	$PIGS pwn $DC_FORWARD 0
+	$PIGS pwm $DC_FORWARD 0
     fi
 }
 
@@ -64,10 +70,6 @@ function print_info {
 clear
 print_help
 
-if [ $PIGS == "echo" ]; then
-    echo "* No 'pigs' command, running in sham mode *"
-fi
-
 ## initialize state and motors (dc=off, servo=nominal center)
 SPEED=0
 POS=$CENTER
@@ -75,6 +77,8 @@ $PIGS write $DC_FORWARD 0
 $PIGS write $DC_BACK 0
 $PIGS write $DC_ENABLE 1
 $PIGS servo $SERVO $CENTER
+
+set_speed
 
 while true; do
     read -n 1 KEY;
@@ -84,26 +88,21 @@ while true; do
 	    exit
 	    ;;
 	"k")
-	    SPEED=$[ $SPEED + 32 ]
-	    set_speed $SPEED
+	    SPEED=$[ $SPEED + $DC_STEP ]
 	    ;;
 	
 	"l")
-	    SPEED=$[ $SPEED - 32 ]
-	    set_speed $SPEED
+	    SPEED=$[ $SPEED - $DC_STEP ]
 	    ;;
 	"r")
-	    $PIGS pwm $DC_FORWARD 0
-	    $PIGS pwm $DC_BACK 0
-	    $PIGS servo $SERVO $CENTER
+	    SPEED=0
+	    POS=$CENTER
 	    ;;
 	"a")
 	    POS=$[ $POS - $SERVO_STEP ]
-	    $PIGS servo $SERVO $POS
 	    ;;
 	"s")
 	    POS=$[ $POS + $SERVO_STEP ]
-	    $PIGS servo $SERVO $POS
 	    ;;
 	"+")
 	    adjust_servo_step 1
@@ -117,5 +116,7 @@ while true; do
 	*)
 	    echo "unknown command: $KEY (press h for help)"
     esac
+    set_speed
+    $PIGS servo $SERVO $POS
     print_info
 done
