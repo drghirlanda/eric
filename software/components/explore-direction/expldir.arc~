@@ -1,0 +1,12 @@
+network
+nodes expldir
+  size 3
+  states 1
+  noise 0.5 .4 1
+  habituation 500 1 2 1
+
+weights expldir-expldir
+0 -1.5 -1.5
+-1.5 0 -1.5
+-1.5 -1.5 0
+
