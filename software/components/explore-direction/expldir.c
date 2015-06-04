@@ -18,7 +18,7 @@ int main( void ) {
 
   n = mint_network_get_nodes( net, 0 );
 
-  for( i=0; i<1000; i++ ) {
+  for( i=0; i<600; i++ ) {
     mint_network_operate( net );
     mint_nodes_save_var( n, 1, file );
   }
