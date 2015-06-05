@@ -8,14 +8,29 @@ set -ex # fatal errors
 
 elog "STARTING eric"
 
-# build eric (switch between debug and optimized code below)
+
+if which pigs > /dev/null; then
+    PIGPIO="-lpigpio"
+    if [ -e /var/run/pigpio.pid ]; then
+	echo "Stopping pigpiod (will be restarted when eric exits)"
+	kill $(cat /var/run/pigpio.pid)
+	START_PIGPIOD=1
+    fi
+else
+    PIGPIO=""
+fi
+
 SDL=$(sdl-config --libs)
 SDL="$SDL -lSDL_image -lSDL_gfx -lSDL_ttf"
+
 if [ $debug -eq 1 ]; then
-    cc -g -O0 -o eric eric.c -lm -pthread -lrt -lmint-debug $SDL
+    FLAGS="-g -O0"
 else
-    cc -O2 -o eric eric.c -lm -pthread -lrt -lmint $SDL
+    FLAGS="-O2"
 fi
+
+# build eric (switch between debug and optimized code below)
+cc $FLAGS -o eric eric.c -lm -pthread -lrt -lmint-debug $PIGPIO $SDL
 ls -lh eric
 
 # build architecture file (you can comment out some sections)
@@ -48,4 +63,8 @@ if [ $ERIC_STATUS -ne 0 ]; then
     killall camshot
 else
     elog "eric TERMINATED normally"
+fi
+
+if [ $RESTART_PIGPIO -eq 1 ]; then
+    sudo pigpiod
 fi
