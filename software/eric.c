@@ -27,7 +27,7 @@ void handler( int signum ) {
 int main( void ) {
   FILE *file;
   int i, c;
-  mint_nodes value;
+  mint_nodes value, explore, bumperFL;
   float old_value;
 
   signal( SIGUSR1, handler );
@@ -35,7 +35,8 @@ int main( void ) {
   mint_random_seed( time(0) );
 
   mint_image_init();
-  mint_camera_init();
+  /* mint_camera_init(); */
+  mint_pi_init();
 
   file = fopen( "eric.arc", "r" );
   net = mint_network_load( file );
@@ -46,6 +47,8 @@ int main( void ) {
   fclose( file );
 
   value = mint_network_find_nodes( net, "value" );
+  explore = mint_network_find_nodes( net, "explore" );
+  bumperFL = mint_network_find_nodes( net, "bumperFL" );
 
   old_value = -1;
 
@@ -54,6 +57,14 @@ int main( void ) {
     if( value[1][0] != old_value ) {
       printf( "%f\n", value[1][0] );
       old_value = value[1][0];
+    }
+    if( explore ) {
+      printf( "explore: " );
+      mint_nodes_save_var( explore, 1, stdout );
+    }
+    if( bumperFL ) {
+      printf( "bumperFL: " );
+      mint_nodes_save_var( bumperFL, 1, stdout );
     }
   }
 

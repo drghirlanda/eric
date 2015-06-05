@@ -1,0 +1,12 @@
+network
+clocked 1
+nodes bumper
+  size 1
+  states 1
+  gpiosensor 4 1 0 2
+  logistic .01 10 0 1
+
+weights bumper-bumper
+0
+
+

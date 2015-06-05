@@ -32,7 +32,7 @@ nodes speed
   size 1 
   states 2
   logistic 0.5 1 # output to 0 is motor's indifference point
-  dcmotor 16 19 23
+  dcmotor 25 23 24 0.5 0
 
 #weights brain-speed 
 #  uniform 0.01 0.1 0.1
@@ -46,7 +46,7 @@ nodes direction
   size 1 
   states 1 
   logistic 0.5 1 
-  servomotor 21 800 1200 0
+  servomotor 21 930 2370 0
 
 #weights brain-direction 
 #  uniform -0.1 0.1 0.1 
@@ -56,34 +56,67 @@ nodes direction
 #  target 2
 #  normalize 1
 
-nodes explore
-  size 3
+# innate defense reflexes for eric
+
+# front-left bumper sensor. projects to speed and direction nodes to
+# back off and counter-steer when the bumper detects a collision
+nodes bumperFL
+  size 1
   states 1
-  noise 0.1 .2 0
-  habituation 50 1 2 0
-  integrator 15 0.05 0 1
-  logistic 0.001 1
+  gpiosensor 4 1 0 # node input +1 when pin 2 becomes active
+  integrator 1 .1 0 2 # fast reaction, slowish decay
+  logistic .001 10 2 1 # low 0 value, high gain
 
-#weights brain-explore
-#  normal 0 0.01 0.05
-#  delta 1e-5 2
+weights bumperFL-speed
+-10
 
-#weights value-explore
-#  target 2
-#  normalize 1
+weights bumperFL-direction
+-10
 
-weights explore-explore
-0 -1.5 -1.5
--1.5 0 -1.5
--1.5 -1.5 0
+# front-right sensor. same logic as previous sensor
+nodes bumperFR
+  size 1
+  states 1
+  gpiosensor 17 1 0
+  integrator 1 .1 0 2
+  logistic .001 10 2 1
 
-weights explore-direction
--10 
+weights bumperFR-speed
+-10
+
+weights bumperFR-direction
 10
-0
 
-weights explore-speed
-0
-0
-1
+# right sensor
+nodes bumperR
+  size 1
+  states 1
+#  gpiosensor 11 1 0
+  integrator 1 .1 0 2
+  logistic .001 10 2 1
 
+weights bumperR-direction
+-10
+
+# left sensor
+nodes bumperL
+  size 1
+  states 1
+#  gpiosensor 11 1 0
+  integrator 1 .1 0 2
+  logistic .001 10 2 1
+
+weights bumperL-direction
+10
+
+
+# back sensor
+nodes bumperB
+  size 1
+  states 1
+# gpiosensor 11 1 0
+  integrator 1 .1 0 2
+  logistic 0.001 10 2 1
+
+weights bumperB-speed
+10

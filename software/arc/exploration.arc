@@ -1,10 +1,10 @@
 nodes explore
   size 3
   states 1
-  noise 0.1 .2 0
-  habituation 50 1 2 0
-  integrator 15 0.05 0 1
-  logistic 0.001 1
+  noise 1.25 .025 0
+  integrator 10 0.1 0 1
+  habituation 30 .1 2 1
+  bounded 0 1 1
 
 #weights brain-explore
 #  normal 0 0.01 0.05
@@ -15,17 +15,17 @@ nodes explore
 #  normalize 1
 
 weights explore-explore
-0 -1.5 -1.5
--1.5 0 -1.5
--1.5 -1.5 0
+0 -5 .5
+-5 0 .5
+0 0 0
 
 weights explore-direction
--10 
-10
+-20
+20
 0
 
 weights explore-speed
 0
 0
-1
+15
 
