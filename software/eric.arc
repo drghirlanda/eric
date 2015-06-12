@@ -2,14 +2,13 @@ network
 #  camera
   clocked 10 1
   threads 4 1 1
-#  display
 #  events
 
 # brain:
 nodes brain 
-  size 400 
+  size 40
   states 1 
-  rows 20
+#  rows 20
   noise 0 .01 0 
   integrator 1 0.15 0 2
   logistic 0.05 1 2 1
@@ -56,67 +55,69 @@ nodes direction
 #  target 2
 #  normalize 1
 
+nodes explore_speed
+  size 1
+  noise 5 1e-1 0
+  logistic 
+
+# FIX see bumpers.arc for this hack
+weights explore_speed-explore_speed
+0
+
+weights explore_speed-speed
+5
+
+nodes explore_dir
+  size 2
+  states 1
+  noise 2 .2 0
+  integrator 10 0.1 0 1
+  habituation 40 .1 2 1
+  bounded 0 1 1
+
+weights explore_dir-explore_dir
+0 -1.5
+-1.5 0
+
+weights explore_dir-direction
+-2
+2
+
 # innate defense reflexes for eric
 
 # front-left bumper sensor. projects to speed and direction nodes to
-# back off and counter-steer when the bumper detects a collision
+# back off and counter-steer when the bumper detects a collision.
 nodes bumperFL
   size 1
   states 1
-  gpiosensor 4 1 0 # node input +1 when pin 2 becomes active
-  integrator 1 .1 0 2 # fast reaction, slowish decay
-  logistic .001 10 2 1 # low 0 value, high gain
+  gpiosensor 4 1 0 2 # node input +1 when pin 4 becomes active
+  integrator 1 .1 0 1
+  bounded 0 1 1
+
+# FIX: hack to have bumper input reset, better way is needed
+weights bumperFL-bumperFL
+0
 
 weights bumperFL-speed
--10
+-2
 
 weights bumperFL-direction
--10
+-1.5
 
 # front-right sensor. same logic as previous sensor
 nodes bumperFR
   size 1
   states 1
-  gpiosensor 17 1 0
-  integrator 1 .1 0 2
-  logistic .001 10 2 1
+  gpiosensor 17 1 0 2
+  integrator 1 .1 0 1
+  bounded 0 1 1
+
+weights bumperFR-bumperFR
+0
 
 weights bumperFR-speed
--10
+-2
 
 weights bumperFR-direction
-10
+1.5
 
-# right sensor
-nodes bumperR
-  size 1
-  states 1
-#  gpiosensor 11 1 0
-  integrator 1 .1 0 2
-  logistic .001 10 2 1
-
-weights bumperR-direction
--10
-
-# left sensor
-nodes bumperL
-  size 1
-  states 1
-#  gpiosensor 11 1 0
-  integrator 1 .1 0 2
-  logistic .001 10 2 1
-
-weights bumperL-direction
-10
-
-
-# back sensor
-nodes bumperB
-  size 1
-  states 1
-# gpiosensor 11 1 0
-  integrator 1 .1 0 2
-  logistic 0.001 10 2 1
-
-weights bumperB-speed
-10

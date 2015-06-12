@@ -2,14 +2,13 @@ network
 #  camera
   clocked 10 1
   threads 4 1 1
-#  display
 #  events
 
 # brain:
 nodes brain 
-  size 400 
+  size 40
   states 1 
-  rows 20
+#  rows 20
   noise 0 .01 0 
   integrator 1 0.15 0 2
   logistic 0.05 1 2 1
