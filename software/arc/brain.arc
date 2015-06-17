@@ -1,8 +1,8 @@
 network
-#  camera
+  camera
   clocked 10 1
-  threads 4 1 1
-#  display
+#  threads 4 1 1
+  display
 #  events
 
 # brain:
@@ -16,7 +16,7 @@ nodes brain
 
 weights brain-brain
   sparse
-  normal -0.25 0.35 0.15
+  normal -0.25 0.3 0.15
 
 # value system:
 nodes value 

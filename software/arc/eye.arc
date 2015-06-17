@@ -1,9 +1,8 @@
 # artificial retina:
 nodes eye
   size 768
-  states 1
   rows 24
-  red .3 green .3 blue .3
+  blue
 
 weights eye-brain 
   sparse
