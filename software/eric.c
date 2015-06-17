@@ -27,8 +27,9 @@ void handler( int signum ) {
 int main( void ) {
   FILE *file;
   int i, c;
-  mint_nodes value, explore_dir, explore_speed, bumperFL;
+  mint_nodes value, explore_dir, explore_speed, bumperFL, phototaxis;
   float old_value;
+  long t;
 
   signal( SIGUSR1, handler );
 
@@ -36,11 +37,7 @@ int main( void ) {
 
   mint_image_init();
   mint_camera_init();
-<<<<<<< HEAD
-=======
-
 #ifdef MINT_PI
->>>>>>> 2a2f9462f461f731f14b2d696442cfc3b7d203ff
   mint_pi_init();
 #endif
 
@@ -58,29 +55,40 @@ int main( void ) {
   explore_dir = mint_network_find_nodes( net, "explore_dir" );
   explore_speed = mint_network_find_nodes( net, "explore_speed" );
   bumperFL = mint_network_find_nodes( net, "bumperFL" );
+  phototaxis = mint_network_find_nodes( net, "phototaxis" );
 
   old_value = -1;
 
+  t = 0;
   for( ;; ) {
     mint_network_operate( net );
     if( value[1][0] != old_value ) {
       printf( "%f\n", value[1][0] );
       old_value = value[1][0];
     }
-    /* if( explore_dir ) { */
-    /*   printf( "explore_dir: " ); */
-    /*   mint_nodes_save_var( explore_dir, 1, stdout ); */
-    /* } */
-    /* if( explore_speed ) { */
-    /*   printf( "explore_speed: " ); */
-    /*   mint_nodes_save_var( explore_speed, 1, stdout ); */
-    /* } */
-    /* if( bumperFL ) { */
-    /*   printf( "bumperFL:\n\t" ); */
-    /*   mint_nodes_save_var( bumperFL, 0, stdout ); */
-    /*   printf( "\t" ); */
-    /*   mint_nodes_save_var( bumperFL, 1, stdout ); */
-    /* } */
+    if( t % 10 == 0 ) {
+      /* if( explore_dir ) { */
+      /*   printf( "explore_dir: " ); */
+      /*   mint_nodes_save_var( explore_dir, 1, stdout ); */
+      /* } */
+      /* if( explore_speed ) { */
+      /*   printf( "explore_speed: " ); */
+      /*   mint_nodes_save_var( explore_speed, 1, stdout ); */
+      /* } */
+      /* if( bumperFL ) { */
+      /*   printf( "bumperFL:\n\t" ); */
+      /*   mint_nodes_save_var( bumperFL, 0, stdout ); */
+      /*   printf( "\t" ); */
+      /*   mint_nodes_save_var( bumperFL, 1, stdout ); */
+      /* } */
+      if( phototaxis ) {
+	printf( "phototaxis in:  " );
+	mint_nodes_save_var( phototaxis, 0, stdout );
+	printf( "phototaxis out: " );
+	mint_nodes_save_var( phototaxis, 1, stdout );
+      }
+    }
+    t++;
   }
 
   return 0;

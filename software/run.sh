@@ -34,7 +34,7 @@ if [ $debug -eq 1 ]; then
     FLAGS="-g -O0 -DMINT_PI"
     MINT="-lmint-debug"
 else
-    FLAGS="-O2"
+    FLAGS="-O2 -DMINT_PI"
     MINT="-lmint"
 fi
 
@@ -46,6 +46,7 @@ ls -lh eric
 cat arc/brain.arc > eric.arc
 #cat arc/eye.arc >> eric.arc
 cat arc/motors.arc >> eric.arc
+cat arc/phototaxis.arc >> eric.arc
 cat arc/exploration.arc >> eric.arc
 cat arc/bumpers.arc >> eric.arc
 
