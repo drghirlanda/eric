@@ -36,7 +36,13 @@ int main( void ) {
 
   mint_image_init();
   mint_camera_init();
+<<<<<<< HEAD
+=======
+
+#ifdef MINT_PI
+>>>>>>> 2a2f9462f461f731f14b2d696442cfc3b7d203ff
   mint_pi_init();
+#endif
 
   file = fopen( "eric.arc", "r" );
   net = mint_network_load( file );

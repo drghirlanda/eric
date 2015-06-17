@@ -1,7 +1,6 @@
 # artificial retina:
 nodes eye
   size 768
-  states 1
   rows 24
   color 1 1 1 1
 

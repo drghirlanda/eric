@@ -31,7 +31,7 @@ SDL="$SDL -lSDL_image -lSDL_gfx -lSDL_ttf"
 
 # set up debug vs. production
 if [ $debug -eq 1 ]; then
-    FLAGS="-g -O0"
+    FLAGS="-g -O0 -DMINT_PI"
     MINT="-lmint-debug"
 else
     FLAGS="-O2"
@@ -48,7 +48,6 @@ cat arc/brain.arc > eric.arc
 cat arc/motors.arc >> eric.arc
 cat arc/exploration.arc >> eric.arc
 cat arc/bumpers.arc >> eric.arc
-
 
 set +e # from now on, set errors to non-fatal
 
