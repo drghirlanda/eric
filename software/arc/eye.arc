@@ -2,7 +2,7 @@
 nodes eye
   size 768
   rows 24
-  blue
+  color 1 1 1 1
 
 weights eye-brain 
   sparse

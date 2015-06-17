@@ -3,11 +3,14 @@ clocked 10
 nodes bumper
   size 1
   states 2
-  gpiosensor 4 .1 0 2
-  integrator 5 .2 0 1
+  gpiosensor 4 1 0 2
+  integrator 1 .15 0 1
+  bounded 0 1 1
 
 weights bumper-bumper
 0
+
+
 
 nodes speed 
   size 1 
@@ -22,10 +25,10 @@ nodes direction
   servomotor 21 930 2370 0
 
 weights bumper-speed
--5
+-1
 
 weights bumper-direction
--5
+-1
 
 
 

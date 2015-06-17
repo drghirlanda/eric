@@ -4,7 +4,7 @@ function elog {
     echo "$(date): $@"
 }
 
-set -ex # fatal errors
+set -e # fatal errors
 
 elog "STARTING eric"
 
@@ -44,10 +44,10 @@ ls -lh eric
 
 # build architecture file (you can comment out some sections)
 cat arc/brain.arc > eric.arc
-cat arc/eye.arc >> eric.arc
-#cat arc/motors.arc >> eric.arc
-#cat arc/bumpers.arc >> eric.arc
-#cat arc/exploration.arc >> eric.arc
+#cat arc/eye.arc >> eric.arc
+cat arc/motors.arc >> eric.arc
+cat arc/exploration.arc >> eric.arc
+cat arc/bumpers.arc >> eric.arc
 
 set +e # from now on, set errors to non-fatal
 

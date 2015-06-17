@@ -1,64 +1,38 @@
 # innate defense reflexes for eric
 
 # front-left bumper sensor. projects to speed and direction nodes to
-# back off and counter-steer when the bumper detects a collision
+# back off and counter-steer when the bumper detects a collision.
 nodes bumperFL
   size 1
   states 1
-  gpiosensor 4 1 0 # node input +1 when pin 2 becomes active
-  integrator 1 .1 0 2 # fast reaction, slowish decay
-  logistic .001 10 2 1 # low 0 value, high gain
+  gpiosensor 4 1 0 2 # node input +1 when pin 4 becomes active
+  integrator 1 .1 0 1
+  bounded 0 1 1
+
+# FIX: hack to have bumper input reset, better way is needed
+weights bumperFL-bumperFL
+0
 
 weights bumperFL-speed
--10
+-2
 
 weights bumperFL-direction
--10
+-1.5
 
 # front-right sensor. same logic as previous sensor
 nodes bumperFR
   size 1
   states 1
-  gpiosensor 17 1 0
-  integrator 1 .1 0 2
-  logistic .001 10 2 1
+  gpiosensor 17 1 0 2
+  integrator 1 .1 0 1
+  bounded 0 1 1
+
+weights bumperFR-bumperFR
+0
 
 weights bumperFR-speed
--10
+-2
 
 weights bumperFR-direction
-10
+1.5
 
-# right sensor
-nodes bumperR
-  size 1
-  states 1
-#  gpiosensor 11 1 0
-  integrator 1 .1 0 2
-  logistic .001 10 2 1
-
-weights bumperR-direction
--10
-
-# left sensor
-nodes bumperL
-  size 1
-  states 1
-#  gpiosensor 11 1 0
-  integrator 1 .1 0 2
-  logistic .001 10 2 1
-
-weights bumperL-direction
-10
-
-
-# back sensor
-nodes bumperB
-  size 1
-  states 1
-# gpiosensor 11 1 0
-  integrator 1 .1 0 2
-  logistic 0.001 10 2 1
-
-weights bumperB-speed
-10
