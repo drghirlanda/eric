@@ -1,21 +1,21 @@
 network
-#  camera
+  camera
   clocked 10 1
   threads 4 1 1
 #  events
 
 # brain:
 nodes brain 
-  size 40
+  size 100
   states 1 
-#  rows 20
+  rows 10
   noise 0 .01 0 
   integrator 1 0.15 0 2
   logistic 0.05 1 2 1
 
 weights brain-brain
   sparse
-  normal -0.25 0.35 0.15
+  normal -0.25 0.35 0.1
 
 # value system:
 nodes value 
@@ -64,8 +64,8 @@ nodes explore_speed
 weights explore_speed-explore_speed
 0
 
-weights explore_speed-speed
-5
+#weights explore_speed-speed
+#5
 
 nodes explore_dir
   size 2

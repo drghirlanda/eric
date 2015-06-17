@@ -35,7 +35,7 @@ int main( void ) {
   mint_random_seed( time(0) );
 
   mint_image_init();
-  /* mint_camera_init(); */
+  mint_camera_init();
   mint_pi_init();
 
   file = fopen( "eric.arc", "r" );

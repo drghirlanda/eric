@@ -7,8 +7,8 @@ nodes explore_speed
 weights explore_speed-explore_speed
 0
 
-weights explore_speed-speed
-5
+#weights explore_speed-speed
+#5
 
 nodes explore_dir
   size 2
