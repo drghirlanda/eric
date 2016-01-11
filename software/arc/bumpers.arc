@@ -14,10 +14,10 @@ weights bumperFL-bumperFL
 0
 
 weights bumperFL-speed
--2
+-5
 
 weights bumperFL-direction
--1.5
+-5
 
 # front-right sensor. same logic as previous sensor
 nodes bumperFR
@@ -31,8 +31,8 @@ weights bumperFR-bumperFR
 0
 
 weights bumperFR-speed
--2
+-5
 
 weights bumperFR-direction
-1.5
+5
 

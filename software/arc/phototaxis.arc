@@ -1,11 +1,11 @@
 nodes phototaxis
-  size 4
-  rows 2
+  size 8
+  rows 4
   color 1 1 1 1
 
 weights phototaxis-direction
--1 1
--1 1
- 
-
+-2 -2 -2 -2 2 2 2 2
+-2 -2 -2 -2 2 2 2 2
+-2 -2 -2 -2 2 2 2 2
+-2 -2 -2 -2 2 2 2 2
 

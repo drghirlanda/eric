@@ -45,7 +45,9 @@ int main( void ) {
   net = mint_network_load( file );
   fclose( file );
 
-  /* mint_network_info( net, stdout ); */
+  file = fopen( "eric.net", "w" );
+  mint_network_save( net, file );
+  fclose( file );
 
   file = fopen( "eric.dot", "w" );
   mint_network_graph( net, file );

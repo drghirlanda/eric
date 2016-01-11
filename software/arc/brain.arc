@@ -1,5 +1,5 @@
 network
-  camera 320 240
+  camera 32 24
   clocked 10 1
 #  threads 4 0 1
 #  display

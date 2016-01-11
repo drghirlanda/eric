@@ -20,7 +20,7 @@ nodes direction
   size 1 
   states 1 
   logistic 0.5 1 
-  servomotor 21 930 2370 0
+  servomotor 21 1720 500 0
 
 #weights brain-direction 
 #  uniform -0.1 0.1 0.1 
